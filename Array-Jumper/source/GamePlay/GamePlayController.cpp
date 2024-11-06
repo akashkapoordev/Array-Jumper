@@ -70,18 +70,40 @@ bool GamePlay::GamePlayController::isEndBlock(BlockType value)
 
 void GamePlay::GamePlayController::processEndBlock()
 {
-	GameService::setGameState(GameState::CREDITS);
 	ServiceLocator::getInstance()->getSoundService()->playSound(SoundType::LEVEL_COMPLETE);
 	ServiceLocator::getInstance()->getPlayerService()->levelComplete();
+
+	if (isLastLevel())
+	{
+		gameWon();
+		return;
+	}
+	loadNextLevel();
 }
 
 void GamePlay::GamePlayController::gameOver()
 {
-	GameService::setGameState(GameState::CREDITS);
+	GameService::setGameState(GameState::GAMEOVER);
 	ServiceLocator::getInstance()->getSoundService()->playSound(SoundType::DEATH);
 }
 
 void GamePlay::GamePlayController::onDeath()
 {
 	gameOver();
+}
+
+void GamePlay::GamePlayController::gameWon()
+{
+	GameService::setGameState(GameState::CREDITS);
+	ServiceLocator::getInstance()->getSoundService()->playSound(SoundType::LEVEL_COMPLETE);
+}
+
+void GamePlay::GamePlayController::loadNextLevel()
+{
+	ServiceLocator::getInstance()->getLevelService()->nextLevel();
+}
+
+bool GamePlay::GamePlayController::isLastLevel()
+{
+	return ServiceLocator::getInstance()->getLevelService()->isLastLevel();
 }

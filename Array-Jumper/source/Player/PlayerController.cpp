@@ -70,6 +70,11 @@ namespace Player
 		}
 	}
 
+	void PlayerController::levelComplete()
+	{
+		player_model->resetPositon();
+	}
+
 	int PlayerController::getCurrentLives()
 	{
 		return player_model->getCurrentLives();
