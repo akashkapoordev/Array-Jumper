@@ -22,4 +22,25 @@ namespace Player
 	{
 		player_conroller->render();
 	}
+	void PlayerService::takeDamage()
+	{
+		player_conroller->takeDamage();
+	}
+	int PlayerService::getCurrentPosition()
+	{
+		return player_conroller->getCurrentPosition();
+	}
+	void PlayerService::levelComplete()
+	{
+		player_conroller->takeDamage();
+	}
+	int PlayerService::getCurrentLives()
+	{
+		return player_conroller->getCurrentLives();
+	}
+	void PlayerService::onDeath()
+	{
+		
+		player_conroller->onDeath();
+	}
 }

@@ -12,6 +12,13 @@ namespace Player
 		void update();
 		void render();
 
+		void takeDamage();
+		int getCurrentPosition();
+		void levelComplete();
+
+		int getCurrentLives();
+		void onDeath();
+
 	private:
 		PlayerController* player_conroller;
 	};
