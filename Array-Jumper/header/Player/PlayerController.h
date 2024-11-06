@@ -20,7 +20,7 @@ namespace Player
 
 		PlayerState getPlayerState();
 		void setPlayerState(PlayerState state);
-		int getCurrentPosition();
+		
 
 
 		void movePlayer(MovementDirection direction);

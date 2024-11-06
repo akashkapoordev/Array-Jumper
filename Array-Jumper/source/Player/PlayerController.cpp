@@ -55,9 +55,6 @@ namespace Player
 	{
 		return player_model->getPosition();
 	}
-
-	
-}
 	void PlayerController::takeDamage()
 	{
 		player_model->decrementLife();
@@ -113,30 +110,30 @@ namespace Player
 		ServiceLocator::getInstance()->getSoundService()->playSound(SoundType::MOVE);
 	}
 
-    void PlayerController::jump(MovementDirection direction)
-    {
-        int currentPosition = player_model->getPosition();
-        BlockType box_value = ServiceLocator::getInstance()->getLevelService()->getCurrentBoxValue(currentPosition);
-        int steps, targetPosition;
-        switch (direction)
-        {
-        case Player::MovementDirection::FORWARD:
-            steps = static_cast<int>(box_value); 
-            break;
-        case Player::MovementDirection::BACKWARD:
-            steps = -static_cast<int>(box_value); 
-            break;
-        default:
-            steps = 0;
-            break;
-        }
-        targetPosition = currentPosition + steps;
-        if (isPositionValid(targetPosition))
-        {
-            player_model->setPosition(targetPosition);
-            ServiceLocator::getInstance()->getSoundService()->playSound(SoundType::JUMP);
-        }
-    }
+	void PlayerController::jump(MovementDirection direction)
+	{
+		int currentPosition = player_model->getPosition();
+		BlockType box_value = ServiceLocator::getInstance()->getLevelService()->getCurrentBoxValue(currentPosition);
+		int steps, targetPosition;
+		switch (direction)
+		{
+		case Player::MovementDirection::FORWARD:
+			steps = static_cast<int>(box_value);
+			break;
+		case Player::MovementDirection::BACKWARD:
+			steps = -static_cast<int>(box_value);
+			break;
+		default:
+			steps = 0;
+			break;
+		}
+		targetPosition = currentPosition + steps;
+		if (isPositionValid(targetPosition))
+		{
+			player_model->setPosition(targetPosition);
+			ServiceLocator::getInstance()->getSoundService()->playSound(SoundType::JUMP);
+		}
+	}
 
 	bool PlayerController::isPositionValid(int targetPosition)
 	{
@@ -177,4 +174,8 @@ namespace Player
 
 	}
 
+	
 }
+
+
+
